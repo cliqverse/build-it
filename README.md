@@ -62,4 +62,13 @@ The chips under the home headline link to `/contact?need=<id>`; the contact page
 
 ## Deploying
 
-The site uses HTML5 history mode with real URLs such as `/products/build`. Configure your host to serve `index.html` for any path that isn't a file, so that deep links and page refreshes work. On Netlify, add `/* /index.html 200`; on Vercel, add a rewrite to `/index.html`; on nginx, use `try_files $uri /index.html;`.
+The site is hosted on Vercel. `vercel.json` sends every path that isn't a file to `index.html`, so deep links and page refreshes work with the site's real URLs (such as `/products/build`). It also caches the hashed files in `/assets` for a year and adds basic security headers.
+
+The site is built locally and the finished files are uploaded, because Vercel's build servers may not support the pnpm version this project pins. To publish a new version:
+
+```bash
+npx vercel build --prod
+npx vercel deploy --prebuilt --prod
+```
+
+Elsewhere, configure the host the same way: on Netlify, add `/* /index.html 200`; on nginx, use `try_files $uri /index.html;`.
