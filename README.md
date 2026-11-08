@@ -1,6 +1,6 @@
-# BuildIt — marketing site
+# BuildIt — company website
 
-Multi-page marketing site for BuildIt, built with Vue 3 (`<script setup>` + TypeScript), Vite, Vue Router 4, Pinia and Tailwind CSS v4.
+The BuildIt company website: a multi-page site built with Vue 3 (`<script setup>` + TypeScript), Vite, Vue Router 4, Pinia and Tailwind CSS v4.
 The look is flat and editorial: violet `#6108e6` with maroon `#800020` as the secondary colour, warm paper neutrals and no gradients. All text is set in Google Sans, self-hosted through Fontsource with optical sizes. Copy is written in plain English for non-technical buyers and leads with two messages: we build any software, and we build it fast.
 
 ## Run

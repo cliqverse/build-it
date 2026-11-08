@@ -1,0 +1,348 @@
+@import "tailwindcss";
+
+/* Google Sans, self-hosted. Only the Latin subsets are shipped; the site has no other scripts. */
+@font-face {
+  font-family: "Google Sans Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url("@fontsource-variable/google-sans/files/google-sans-latin-opsz-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Google Sans Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url("@fontsource-variable/google-sans/files/google-sans-latin-ext-opsz-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/*
+ * Design tokens. Flat, editorial look: violet primary #6108e6 with maroon #800020 as the
+ * secondary colour, warm paper neutrals, square-ish corners, no gradients, glows or textures.
+ * All text is Google Sans (self-hosted, optical sizes).
+ *
+ * Spacing follows an 8px rhythm: use even Tailwind spacing steps
+ * (2 = 8px, 4 = 16px, 6 = 24px, 8 = 32px, 12 = 48px, 16 = 64px, 24 = 96px, 32 = 128px).
+ *
+ * How maroon is used: maroon-700 is a solid fill with white text (highlights, chips, badges,
+ * the closing band). It is only 1.39:1 against violet, so on violet and ink surfaces small
+ * accent text uses the pale maroon-200 tint instead.
+ *
+ * WCAG 2.x contrast of the colour pairs used in the UI (AA: 4.5:1 text, 3:1 large text / UI):
+ *   white on brand-600 ............  7.82:1  (primary buttons, violet panels)
+ *   white/80 on brand-600 .........  5.34:1  (copy on violet panels)
+ *   brand-600 on white / paper ....  7.82:1 / 6.06:1  (links, labels)
+ *   white on maroon-700 ...........  10.83:1 (highlighted phrases, chips, closing band)
+ *   white/80 on maroon-700 ........  7.19:1
+ *   maroon-700 on white / paper ...  10.83:1 / 8.39:1
+ *   maroon-700 on maroon-100 ......  9.00:1  (soft badges)
+ *   maroon-200 on brand-600 .......  5.37:1  (labels on violet)
+ *   maroon-200 / maroon-300 on ink   13.15:1 / 9.80:1  (labels and large accents on dark)
+ *   ink/70 on white / paper .......  7.21:1 / 6.35:1  (body copy)
+ *   ink/60 on white / paper .......  5.01:1 / 4.59:1  (small print)
+ *   brand-700 on brand-100 ........  8.68:1  (icon tiles, avatars)
+ *   white/60 / white/70 on ink ....  7.24:1 / 9.55:1  (dark sections, footer)
+ *   Focus ring: brand-600 on light surfaces (≥ 6.06:1); white on violet, ink and maroon
+ *   surfaces (7.82:1 / 19.14:1 / 10.83:1).
+ */
+@theme {
+  --font-display: "Google Sans Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Google Sans Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-brand-100: #f3eefe;
+  --color-brand-200: #e5d9fd;
+  --color-brand-600: #6108e6;
+  --color-brand-700: #5006c0;
+
+  --color-maroon-50: #fdf3f3;
+  --color-maroon-100: #fbe5e5;
+  --color-maroon-200: #f6cccc;
+  --color-maroon-300: #efa7a7;
+  --color-maroon-400: #e47575;
+  --color-maroon-700: #800020;
+  --color-maroon-800: #6b0a1e;
+
+  --color-canvas: #ffffff;
+  --color-paper: #e3e3da;
+  --color-ink: #0f0f12;
+  --color-muted: #55575f;
+  --color-line: #e2e2dc;
+
+  --tracking-eyebrow: 0.12em;
+
+  --text-hero: clamp(2.5rem, 3vw + 1.25rem, 4rem);
+  --text-hero--line-height: 1.02;
+  --text-hero--letter-spacing: -0.035em;
+
+  --text-title: clamp(2.5rem, 4.4vw + 0.75rem, 4.5rem);
+  --text-title--line-height: 1;
+  --text-title--letter-spacing: -0.035em;
+
+  --text-heading: clamp(2rem, 2.6vw + 1.125rem, 3.5rem);
+  --text-heading--line-height: 1.04;
+  --text-heading--letter-spacing: -0.03em;
+
+  --text-sm--line-height: 1.6;
+  --text-base--line-height: 1.65;
+  --text-lg--line-height: 1.6;
+  --text-xl--line-height: 1.5;
+
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: ease;
+
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --shadow-soft: 0 1px 2px rgb(15 15 18 / 0.04), 0 6px 18px -6px rgb(15 15 18 / 0.1);
+  --shadow-lift: 0 2px 6px rgb(15 15 18 / 0.05), 0 24px 48px -20px rgb(15 15 18 / 0.3);
+  --shadow-brand: 0 14px 30px -12px rgb(97 8 230 / 0.6);
+  --shadow-maroon: 0 14px 30px -12px rgb(128 0 32 / 0.55);
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-page-in: page-in 0.5s var(--ease-smooth) both;
+  --animate-pop: pop 0.45s var(--ease-smooth) both;
+  --animate-menu-in: menu-in 0.45s var(--ease-smooth) both;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes page-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+  }
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    scroll-padding-top: 5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--color-maroon-700);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 3px;
+  }
+
+  /* Containers receive programmatic focus after navigation; no ring needed there. */
+  [tabindex="-1"]:focus {
+    outline: none;
+  }
+}
+
+@layer components {
+  /* brand-600 is under 3:1 on ink and maroon and invisible on violet, so those surfaces use a white ring. */
+  .surface-dark :focus-visible,
+  .surface-brand :focus-visible,
+  .surface-maroon :focus-visible {
+    outline-color: white;
+  }
+}
+
+/* 1200px content width plus 24px gutters on each side. */
+@utility container-page {
+  width: 100%;
+  max-width: calc(75rem + 3rem);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* Section vertical rhythm: 64px mobile, 96px tablet, 128px desktop. */
+@utility section-y {
+  padding-block: 4rem;
+
+  @media (width >= 48rem) {
+    padding-block: 6rem;
+  }
+
+  @media (width >= 64rem) {
+    padding-block: 8rem;
+  }
+}
+
+/* Faint square grid behind the home hero, drawn with an SVG tile rather than gradients. */
+@utility grid-lines {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M56 0H0V56' fill='none' stroke='%230f0f12' stroke-opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 56px 56px;
+  background-position: center top;
+}
+
+/*
+ * Maroon marker behind a phrase; wraps cleanly across lines. It sits one layer below
+ * the text so tight display line-heights never paint it over the line above, so the
+ * element that contains it must be `isolate` (or otherwise form a stacking context).
+ */
+@utility marker {
+  position: relative;
+  z-index: -1;
+  border-radius: 0.14em;
+  background-color: var(--color-maroon-700);
+  color: white;
+  padding-inline: 0.12em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Soft white card that lifts on hover. Hover styles sit on the card, not on a RevealOnScroll wrapper, whose slow entrance transition would make them sluggish. */
+@utility card {
+  border: 1px solid rgb(15 15 18 / 0.07);
+  border-radius: 1rem;
+  background-color: white;
+  box-shadow: var(--shadow-soft);
+  transition:
+    translate 0.4s var(--ease-smooth),
+    box-shadow 0.4s var(--ease-smooth),
+    border-color 0.4s var(--ease-smooth);
+
+  /* Hover-capable devices only, so a tap on a phone doesn't leave the card stuck in its lifted state. */
+  @media (hover: hover) {
+    &:hover {
+      border-color: rgb(97 8 230 / 0.2);
+      box-shadow: var(--shadow-lift);
+      translate: 0 -4px;
+    }
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: reduce) {
+    &:hover {
+      translate: none;
+    }
+  }
+}
+
+/* Thin underline that sweeps in from the left on hover and out to the right. */
+@utility link-sweep {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -2px;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s var(--ease-smooth);
+  }
+
+  @media (hover: hover) {
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+}
+
+/* Underline that grows from the left on hover and stays on the current page. */
+@utility nav-underline {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0.875rem;
+    bottom: 0.375rem;
+    height: 2px;
+    border-radius: 9999px;
+    background-color: var(--color-brand-600);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease-smooth);
+  }
+
+  &[aria-current="page"]::after,
+  &[data-active="true"]::after {
+    transform: scaleX(1);
+  }
+
+  @media (hover: hover) {
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* Maroon would sit at 1.39:1 on violet, so on violet surfaces the marker turns white with maroon text. */
+.surface-brand .marker {
+  background-color: white;
+  color: var(--color-maroon-700);
+}
+
+/*
+ * Entrance details driven by the nearest RevealOnScroll (`data-reveal="out" | "in"`):
+ * highlighted phrases wipe in from the left and `.draw-in` lines draw across.
+ */
+[data-reveal] .marker {
+  transition: clip-path 0.8s var(--ease-smooth) 0.3s;
+}
+
+[data-reveal="out"] .marker {
+  clip-path: inset(0 100% 0 0);
+}
+
+.draw-in {
+  transform-origin: left;
+}
+
+[data-reveal] .draw-in {
+  transition: transform 1s var(--ease-smooth) 0.25s;
+}
+
+[data-reveal="out"] .draw-in {
+  transform: scaleX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] .marker,
+  [data-reveal] .draw-in {
+    clip-path: none;
+    transform: none;
+    transition: none;
+  }
+}
