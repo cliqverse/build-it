@@ -28,6 +28,20 @@ export const scrollToHash = (hash: string) => {
   window.scrollTo({ top, behavior: prefersReducedMotion() ? 'auto' : 'smooth' })
 }
 
+/*
+ * Opening a link such as /work#story-kashia in a new tab: the app mounts after the first route
+ * resolves, so the browser makes the jump itself, mid-animation. Once the page has loaded, put the
+ * section where an in-app link would.
+ */
+export const settleInitialHash = () => {
+  const settle = () => {
+    const top = location.hash ? hashScrollTop(location.hash) : undefined
+    if (top !== undefined) requestAnimationFrame(() => window.scrollTo({ top }))
+  }
+  if (document.readyState === 'complete') settle()
+  else window.addEventListener('load', settle, { once: true })
+}
+
 /** Moves keyboard and screen-reader focus to the section an in-page link points at. */
 export const focusHash = (hash: string) => {
   const el = findSection(hash)

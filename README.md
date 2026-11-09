@@ -62,7 +62,7 @@ The chips under the home headline link to `/contact?need=<id>`; the contact page
 
 ## Deploying
 
-The site is hosted on Vercel. `vercel.json` sends every path that isn't a file to `index.html`, so deep links and page refreshes work with the site's real URLs (such as `/products/build`). It also caches the hashed files in `/assets` for a year and adds basic security headers.
+The site is hosted on Vercel as the `build-it` project, live at https://build-it-xi-seven.vercel.app. This folder is linked to it through `.vercel/`, which is git-ignored. `vercel.json` sends every path that isn't a file to `index.html`, so deep links and page refreshes work with the site's real URLs (such as `/products/build`). It also caches the hashed files in `/assets` for a year and adds basic security headers.
 
 The site is built locally and the finished files are uploaded, because Vercel's build servers may not support the pnpm version this project pins. To publish a new version:
 
