@@ -4,15 +4,12 @@ import HeroCard from '@/components/blocks/HeroCard.vue'
 import AppIcon from '@/components/ui/AppIcon.vue'
 import AppLink from '@/components/ui/AppLink.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
-import MonogramAvatar from '@/components/ui/MonogramAvatar.vue'
 import RevealOnScroll from '@/components/ui/RevealOnScroll.vue'
 import { useHomeStore } from '@/stores/home'
 import { useSiteStore } from '@/stores/site'
 
-const { hero, heroCards, clients } = storeToRefs(useHomeStore())
+const { hero, heroCards } = storeToRefs(useHomeStore())
 const { projectTypes } = storeToRefs(useSiteStore())
-
-const avatarTones = ['tint', 'dark', 'maroon', 'dark'] as const
 
 /** Card slots around the centred headline, three down each side (wide screens only). */
 const slots = ['top-10 left-6', 'top-[40%] left-0', 'bottom-24 left-6', 'top-14 right-4', 'top-[38%] right-0', 'bottom-20 right-6']
@@ -77,18 +74,6 @@ const isStandout = (index: number) => index === projectTypes.value.length - 1
           </ul>
         </RevealOnScroll>
 
-        <RevealOnScroll :delay="320" class="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-          <span class="flex -space-x-2">
-            <MonogramAvatar
-              v-for="(client, i) in clients.slice(0, 4)"
-              :key="client.name"
-              :name="client.name"
-              :tone="avatarTones[i]"
-              class="ring-2 ring-paper"
-            />
-          </span>
-          <p class="text-sm font-medium text-ink/70">{{ hero.proof }}</p>
-        </RevealOnScroll>
       </div>
 
       <!-- Illustrative cards; each figure is also stated elsewhere on the site. -->

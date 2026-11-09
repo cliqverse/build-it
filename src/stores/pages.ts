@@ -15,7 +15,7 @@ const UPDATED = '7 November 2026'
 export const usePagesStore = defineStore('pages', () => {
   const contact = ref<ContactPage>({
     meta: {
-      title: 'Contact — BuildIt',
+      title: 'Contact | BuildIt',
       description: `Tell BuildIt what you need built, big or small. We respond within ${RESPONSE_TIME}, and everything you share stays confidential.`,
     },
     hero: {
@@ -32,7 +32,7 @@ export const usePagesStore = defineStore('pages', () => {
       {
         icon: 'rocket',
         title: 'Start a project',
-        body: 'Tell us what you’d like built. A few lines is plenty — we’ll take it from there.',
+        body: 'Tell us what you’d like built. A few lines is plenty. We’ll take it from there.',
         link: { label: 'Email us your idea', href: PROJECT_MAILTO },
         project: true,
       },
@@ -69,7 +69,7 @@ export const usePagesStore = defineStore('pages', () => {
   const legal = ref<Record<LegalDocId, LegalDoc>>({
     privacy: {
       meta: {
-        title: 'Privacy policy — BuildIt',
+        title: 'Privacy policy | BuildIt',
         description: 'What information the BuildIt website collects and how we use it.',
       },
       title: 'Privacy policy',
@@ -106,7 +106,7 @@ export const usePagesStore = defineStore('pages', () => {
     },
     terms: {
       meta: {
-        title: 'Terms of use — BuildIt',
+        title: 'Terms of use | BuildIt',
         description: 'The terms that apply to your use of the BuildIt website.',
       },
       title: 'Terms of use',
@@ -145,7 +145,7 @@ export const usePagesStore = defineStore('pages', () => {
     },
     cookies: {
       meta: {
-        title: 'Cookie policy — BuildIt',
+        title: 'Cookie policy | BuildIt',
         description: 'The BuildIt website does not set cookies.',
       },
       title: 'Cookie policy',
@@ -172,7 +172,7 @@ export const usePagesStore = defineStore('pages', () => {
 
   const notFound = ref<NotFoundPage>({
     meta: {
-      title: 'Page not found — BuildIt',
+      title: 'Page not found | BuildIt',
       description: 'The page you were looking for does not exist.',
     },
     eyebrow: '404',

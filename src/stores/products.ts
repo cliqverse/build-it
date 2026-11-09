@@ -4,14 +4,14 @@ import type { Link, Offering, PageHeroCopy, PageMeta, Product, ProductId, Sectio
 
 export const useProductsStore = defineStore('products', () => {
   const meta = ref<PageMeta>({
-    title: 'What we build — BuildIt',
+    title: 'What we build | BuildIt',
     description: 'Websites, mobile apps, business software, AI that saves your team time, and expert advice on what to build: BuildIt delivers whatever you need, fast, and keeps it running.',
   })
 
   const hero = ref<PageHeroCopy>({
     eyebrow: 'What we build',
     title: 'If you can picture it, we can build it.',
-    intro: 'From expert advice on where to start to a finished website, app or AI assistant, one accountable team handles planning, design, build, launch and support — fast, and to enterprise standards.',
+    intro: 'From expert advice on where to start to a finished website, app or AI assistant, one accountable team handles planning, design, build, launch and support, fast and to enterprise standards.',
     primary: { label: 'Start your project', href: '/contact' },
     secondary: { label: 'See success stories', href: '/work' },
   })
@@ -21,7 +21,7 @@ export const useProductsStore = defineStore('products', () => {
     eyebrow: 'What we build',
     title: 'You name it.',
     highlight: 'We build it.',
-    intro: 'Whatever your business needs, chances are we’ve built something like it before — so yours gets done faster.',
+    intro: 'Whatever your business needs, chances are we’ve built something like it before, so yours gets done faster.',
   })
 
   const offerings = ref<Offering[]>([
@@ -105,7 +105,7 @@ export const useProductsStore = defineStore('products', () => {
       shortName: 'Intelligence',
       tagline: 'AI that does the busywork for you.',
       descriptor: 'Custom AI that answers questions, reads documents and takes routine work off your team’s hands.',
-      summary: 'Forget the hype. We build AI that actually saves your team time — built around your business, private to your company and tested before it goes live.',
+      summary: 'Forget the hype. We build AI that actually saves your team time: built around your business, private to your company and tested before it goes live.',
       features: [
         'AI assistants that answer questions',
         'AI that reads and sorts documents',
@@ -137,7 +137,7 @@ export const useProductsStore = defineStore('products', () => {
       name: 'BuildIt Access',
       shortName: 'Access',
       tagline: 'Apps everyone can use, anywhere.',
-      descriptor: 'Apps that work for everyone — by voice, by touch and even without internet.',
+      descriptor: 'Apps that work for everyone: by voice, by touch and even without internet.',
       summary: 'Reach every customer, including people with disabilities: apps that talk, apps that see, and apps that keep working when the signal drops.',
       features: [
         'Apps you can use by voice',

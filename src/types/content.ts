@@ -95,7 +95,6 @@ export interface HomeHero {
   title: Slogan
   primary: Link
   secondary: Link
-  proof: string
   pickerTitle: string
 }
 

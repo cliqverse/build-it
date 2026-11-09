@@ -6,7 +6,7 @@ import type { Assurance, PageHeroCopy, PageMeta, Phase, PlatformLayer, SectionCo
 /** Copy for "How we work", plus the speed story shared with the home page. */
 export const usePlatformStore = defineStore('platform', () => {
   const meta = ref<PageMeta>({
-    title: 'How we work — BuildIt',
+    title: 'How we work | BuildIt',
     description: 'Fast, transparent and accountable: how BuildIt takes your project from the first conversation to launch, then secures, supports and improves it.',
   })
 
@@ -28,7 +28,7 @@ export const usePlatformStore = defineStore('platform', () => {
       eyebrow: 'Speed',
       title: 'Built fast.',
       highlight: 'Never rushed.',
-      intro: 'Speed is how we win. Small expert teams, a proven playbook and over a decade of building mean you see real progress early and often — not a pile of paperwork months later.',
+      intro: 'Speed is how we win. Small expert teams, a proven playbook and over a decade of building mean you see real progress early and often, not a pile of paperwork months later.',
     },
     claim: 'Launch in weeks, not months.',
     steps: [
@@ -45,7 +45,7 @@ export const usePlatformStore = defineStore('platform', () => {
       {
         marker: 'Every week',
         title: 'Watch it come to life',
-        body: 'You see real, working progress every week — not one big reveal at the end.',
+        body: 'You see real, working progress every week, not one big reveal at the end.',
       },
       {
         marker: 'Launch day',
@@ -134,7 +134,7 @@ export const usePlatformStore = defineStore('platform', () => {
       icon: 'rocket',
       badge: 'Step 3',
       title: 'Launch and grow',
-      body: 'We launch with you, keep everything running smoothly and keep improving it — or hand it over with everything your team needs.',
+      body: 'We launch with you, keep everything running smoothly and keep improving it. Or we hand it over with everything your team needs.',
       points: ['Launch-day support', 'Ongoing care and improvements', 'An easy hand-over whenever you’re ready'],
     },
   ])

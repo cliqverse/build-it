@@ -7,7 +7,7 @@ import type { Client, HeroCard, HomeHero, PageMeta, SectionCopy, Stat } from '@/
 /** Copy for the home page. */
 export const useHomeStore = defineStore('home', () => {
   const meta = ref<PageMeta>({
-    title: 'BuildIt — Any software, built fast',
+    title: 'BuildIt | Any software, built fast',
     description: 'Websites, mobile apps, business software and AI, built fast and to enterprise standards, plus expert advice on what to build. One accountable team with over a decade of delivery.',
   })
 
@@ -16,7 +16,6 @@ export const useHomeStore = defineStore('home', () => {
     title: { lead: 'Any software you need.', highlight: 'Built fast.', rest: 'Built to stand the test of time.' },
     primary: { label: 'Start your project', href: '/contact' },
     secondary: { label: 'See success stories', href: '/work' },
-    proof: 'Trusted by teams across 12 industries',
     pickerTitle: 'What can we help with?',
   })
 

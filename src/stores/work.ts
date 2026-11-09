@@ -13,14 +13,14 @@ import type { PageHeroCopy, PageMeta, SectionCopy, Work } from '@/types/content'
 /** Live products we have built. Each `result` restates a fact from its description; keep the two in step. */
 export const useWorkStore = defineStore('work', () => {
   const meta = ref<PageMeta>({
-    title: 'Success stories — BuildIt',
+    title: 'Success stories | BuildIt',
     description: 'Biro Fight, a browser game; CliqMit, an events platform; Kashia, for payroll, hiring and escrow; and Mobiey, a real estate platform with its own AI assistant: real products BuildIt has built and launched.',
   })
 
   const hero = ref<PageHeroCopy>({
     eyebrow: 'Success stories',
     title: 'Big wins. Delivered fast. Still running.',
-    intro: 'A few of the products we’ve designed, built and launched — live today and used by real people.',
+    intro: 'A few of the products we’ve designed, built and launched, all live today and used by real people.',
     primary: { label: 'Start your project', href: '/contact' },
   })
 

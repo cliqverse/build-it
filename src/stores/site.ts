@@ -19,7 +19,7 @@ export const CONSULTATION_MAILTO = `mailto:${CONTACT_EMAIL}?subject=Consultation
 export const useSiteStore = defineStore('site', () => {
   const brand = ref<Brand>({
     name: 'BuildIt',
-    tagline: 'From expert advice to websites, apps, business software and AI — one accountable team, start to finish.',
+    tagline: 'From expert advice to websites, apps, business software and AI: one accountable team, start to finish.',
     email: CONTACT_EMAIL,
   })
 
