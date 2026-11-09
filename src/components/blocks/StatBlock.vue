@@ -7,7 +7,7 @@ import type { Stat } from '@/types/content'
 const props = defineProps<{ stat: Stat }>()
 
 const root = useTemplateRef<HTMLElement>('root')
-const { isVisible } = useScrollReveal(root, { threshold: 0.5 })
+const { isVisible } = useScrollReveal(root, { threshold: 0.5, rootMargin: '0px' })
 const current = useCountUp(() => props.stat.value, isVisible)
 
 const format = (n: number) => n.toFixed(props.stat.decimals ?? 0)

@@ -59,7 +59,7 @@ onBeforeUnmount(() => {
     class="sticky top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-smooth"
     :class="
       scrolled || menuOpen
-        ? 'border-ink/10 bg-white/95 shadow-[0_12px_32px_-24px_rgb(15_15_18/0.45)] backdrop-blur-md'
+        ? 'border-ink/10 bg-white shadow-[0_12px_32px_-24px_rgb(15_15_18/0.45)]'
         : 'border-transparent bg-white'
     "
   >

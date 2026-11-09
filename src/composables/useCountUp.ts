@@ -5,7 +5,7 @@ import { prefersReducedMotion } from '@/utils/motion'
  * Animates from 0 to `target` (ease-out cubic) once `start` becomes true.
  * With reduced motion the final value is shown immediately.
  */
-export function useCountUp(target: MaybeRefOrGetter<number>, start: Ref<boolean>, duration = 1600) {
+export function useCountUp(target: MaybeRefOrGetter<number>, start: Ref<boolean>, duration = 1200) {
   const current = ref(0)
   let frame = 0
 

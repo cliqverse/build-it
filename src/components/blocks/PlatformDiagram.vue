@@ -1,8 +1,24 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
 import type { PlatformLayer } from '@/types/content'
 import { pad } from '@/utils/format'
 
 defineProps<{ layers: PlatformLayer[]; label: string }>()
+
+/* The flowing wire and pulsing nodes loop forever, so they only run while the diagram is on screen. */
+const figure = useTemplateRef<HTMLElement>('figure')
+const onScreen = ref(true)
+let observer: IntersectionObserver | undefined
+
+onMounted(() => {
+  if (!figure.value || !('IntersectionObserver' in window)) return
+  observer = new IntersectionObserver(([entry]) => {
+    onScreen.value = entry?.isIntersecting ?? true
+  })
+  observer.observe(figure.value)
+})
+
+onBeforeUnmount(() => observer?.disconnect())
 
 /*
  * From 640px up, geometry lives in a 100 × 120 viewBox that matches the figure's
@@ -31,7 +47,7 @@ const nodes = [
 </script>
 
 <template>
-  <figure class="diagram" role="img" :aria-label="label">
+  <figure ref="figure" class="diagram" :class="{ 'is-paused': !onScreen }" role="img" :aria-label="label">
     <div v-for="(layer, i) in layers" :key="layer.name" class="panel" :style="{ '--i': i }">
       <div class="flex items-center justify-between gap-3">
         <span class="text-xs font-semibold tracking-eyebrow text-brand-600 uppercase">
@@ -186,6 +202,13 @@ const nodes = [
   to {
     stroke-dashoffset: -8;
   }
+}
+
+.is-paused .wire-loop,
+.is-paused .node,
+.is-paused .link::before,
+.is-paused .link::after {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
