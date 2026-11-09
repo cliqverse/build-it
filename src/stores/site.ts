@@ -75,25 +75,28 @@ export const useSiteStore = defineStore('site', () => {
     { id: 'something-new', label: 'Something brand new', icon: 'sparkle' },
   ])
 
-  /** Placeholder testimonials: replace with real quotes you have permission to publish. */
+  /**
+   * Drafted quotes for real clients: get each person's written approval of the exact
+   * wording before the site goes live, and edit freely to match what they actually said.
+   */
   const testimonials = ref<Testimonial[]>([
     {
-      quote: 'BuildIt treated our compliance team as a partner, not an obstacle. We went from first idea to a live product in a single quarter.',
-      name: 'Adaeze Okafor',
-      role: 'Chief Data Officer',
-      company: 'Kestrel Bank',
+      quote: 'BuildIt took Mobiey from an idea to a live platform, AI assistant and all. They moved fast, explained every decision and never left us guessing.',
+      name: 'Ikenna',
+      role: 'CEO',
+      company: 'Mobiey',
     },
     {
-      quote: 'Our clinicians get fast, accurate summaries — and not a single patient record leaves our building.',
-      name: 'Dr Leila Haddad',
-      role: 'Director of Clinical Informatics',
-      company: 'Meridian Health',
+      quote: 'Payroll and escrow leave no room for mistakes. BuildIt built Kashia with the care that demands, and they’re still the team we call first.',
+      name: 'Ajie Takon',
+      role: 'CEO',
+      company: 'Kashia',
     },
     {
-      quote: 'They only promise what they can prove. Two years on, the system still gets better every month.',
-      name: 'Daniel Mensah',
-      role: 'VP Engineering',
-      company: 'Atlas Telecom',
+      quote: 'They only promise what they can deliver, and then they deliver it. One accountable team, a clear plan and no surprises on the bill.',
+      name: 'Costly Ayang',
+      role: 'President',
+      company: 'Expensive Group',
     },
   ])
 

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { HEADER_OFFSET } from '@/router/anchors'
+import { HEADER_OFFSET, hashScrollTop } from '@/router/anchors'
 import { useProductsStore } from '@/stores/products'
 import type { LegalDocId } from '@/types/content'
 import { prefersReducedMotion } from '@/utils/motion'
@@ -35,11 +35,9 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition
     if (to.hash) {
-      return {
-        el: to.hash,
-        top: HEADER_OFFSET,
-        behavior: prefersReducedMotion() || to.path !== from.path ? 'auto' : 'smooth',
-      }
+      const behavior = prefersReducedMotion() || to.path !== from.path ? 'auto' : 'smooth'
+      const top = hashScrollTop(to.hash)
+      return top === undefined ? { el: to.hash, top: HEADER_OFFSET, behavior } : { top, behavior }
     }
     return { top: 0 }
   },
