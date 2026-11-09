@@ -10,8 +10,8 @@ defineProps<{ copy: PageHeroCopy }>()
   <section aria-labelledby="page-title" class="surface-brand bg-brand-600 text-white">
     <div class="container-page grid gap-8 py-16 md:py-24 lg:grid-cols-12 lg:items-end lg:gap-10">
       <div class="lg:col-span-7">
-        <RevealOnScroll as="p" class="flex items-start gap-2.5 text-sm font-bold tracking-eyebrow text-maroon-200 uppercase">
-          <span aria-hidden="true" class="mt-[0.45em] size-2 shrink-0 rounded-full bg-maroon-200" />
+        <RevealOnScroll as="p" class="flex items-start gap-2.5 text-sm font-bold tracking-eyebrow text-brand-200 uppercase">
+          <span aria-hidden="true" class="mt-[0.45em] size-2 shrink-0 rounded-full bg-brand-200" />
           {{ copy.eyebrow }}
         </RevealOnScroll>
         <RevealOnScroll id="page-title" as="h1" :delay="80" class="mt-5 text-title font-bold">

@@ -28,8 +28,9 @@
  * (2 = 8px, 4 = 16px, 6 = 24px, 8 = 32px, 12 = 48px, 16 = 64px, 24 = 96px, 32 = 128px).
  *
  * How maroon is used: maroon-700 is a solid fill with white text (highlights, chips, badges,
- * the closing band). It is only 1.39:1 against violet, so on violet and ink surfaces small
- * accent text uses the pale maroon-200 tint instead.
+ * the closing band). It is only 1.39:1 against violet, so violet surfaces use white and the
+ * lavender brand-200 tint only, and maroon appears there only as text on white (the highlight
+ * marker, step labels and badges). On ink, small accent text uses the pale maroon-200 tint.
  *
  * WCAG 2.x contrast of the colour pairs used in the UI (AA: 4.5:1 text, 3:1 large text / UI):
  *   white on brand-600 ............  7.82:1  (primary buttons, violet panels)
@@ -39,7 +40,7 @@
  *   white/80 on maroon-700 ........  7.19:1
  *   maroon-700 on white / paper ...  10.83:1 / 8.39:1
  *   maroon-700 on maroon-100 ......  9.00:1  (soft badges)
- *   maroon-200 on brand-600 .......  5.37:1  (labels on violet)
+ *   brand-200 on brand-600 ........  5.84:1  (eyebrows and accent lines on violet)
  *   maroon-200 / maroon-300 on ink   13.15:1 / 9.80:1  (labels and large accents on dark)
  *   ink/70 on white / paper .......  7.21:1 / 6.35:1  (body copy)
  *   ink/60 on white / paper .......  5.01:1 / 4.59:1  (small print)

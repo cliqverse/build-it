@@ -6,7 +6,11 @@ import SectionHeading from '@/components/ui/SectionHeading.vue'
 import type { Speed } from '@/types/content'
 import { pad } from '@/utils/format'
 
-/** "brand" is the full violet block used on the home page; "light" sits on white elsewhere. */
+/**
+ * "brand" is the full violet block used on the home page; "light" sits on white elsewhere.
+ * On violet everything is white or lavender, and maroon appears only as text on white,
+ * matching the highlight marker; maroon fills would sit at 1.39:1 against the violet.
+ */
 const props = withDefaults(defineProps<{ speed: Speed; tone?: 'brand' | 'light' }>(), { tone: 'brand' })
 
 const onBrand = computed(() => props.tone === 'brand')
@@ -26,7 +30,7 @@ const onBrand = computed(() => props.tone === 'brand')
         as="p"
         :delay="120"
         class="mt-12 font-display text-3xl font-bold tracking-tight md:text-5xl"
-        :class="onBrand ? 'text-maroon-200' : 'text-brand-600'"
+        :class="onBrand ? 'text-brand-200' : 'text-brand-600'"
       >
         {{ speed.claim }}
       </RevealOnScroll>
@@ -42,11 +46,12 @@ const onBrand = computed(() => props.tone === 'brand')
           <span
             aria-hidden="true"
             class="draw-in absolute inset-x-0 top-0 h-1 rounded-full"
-            :class="onBrand ? 'bg-maroon-200' : 'bg-ink'"
+            :class="onBrand ? 'bg-white/30' : 'bg-ink'"
           />
           <div class="flex items-center justify-between gap-3">
             <span
-              class="rounded-full bg-maroon-700 px-3 py-1 text-xs font-bold tracking-eyebrow text-white uppercase"
+              class="rounded-full px-3 py-1 text-xs font-bold tracking-eyebrow uppercase"
+              :class="onBrand ? 'bg-white text-maroon-700' : 'bg-maroon-700 text-white'"
             >
               {{ step.marker }}
             </span>
@@ -66,7 +71,8 @@ const onBrand = computed(() => props.tone === 'brand')
         <RevealOnScroll v-for="(point, i) in speed.points" :key="point" as="li" :delay="i * 80" class="group/point flex items-center gap-3 text-lg font-bold">
           <span
             aria-hidden="true"
-            class="grid size-9 shrink-0 place-items-center rounded-xl bg-maroon-700 text-white transition-transform duration-500 ease-smooth motion-safe:group-hover/point:scale-110 motion-safe:group-hover/point:-rotate-12"
+            class="grid size-9 shrink-0 place-items-center rounded-xl transition-transform duration-500 ease-smooth motion-safe:group-hover/point:scale-110 motion-safe:group-hover/point:-rotate-12"
+            :class="onBrand ? 'bg-white text-maroon-700' : 'bg-maroon-700 text-white'"
           >
             <AppIcon name="bolt" :size="18" :stroke-width="2.25" />
           </span>

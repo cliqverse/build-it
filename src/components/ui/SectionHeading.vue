@@ -13,6 +13,14 @@ const props = withDefaults(
 )
 
 const onDark = computed(() => props.tone !== 'light')
+
+/* On violet the eyebrow is a lavender tint of the same hue; pale maroon reads well on ink but clashes with violet. */
+const eyebrowTones = {
+  light: { text: 'text-brand-600', dot: 'bg-brand-600' },
+  dark: { text: 'text-maroon-200', dot: 'bg-maroon-200' },
+  brand: { text: 'text-brand-200', dot: 'bg-brand-200' },
+}
+const eyebrow = computed(() => eyebrowTones[props.tone])
 </script>
 
 <template>
@@ -21,9 +29,9 @@ const onDark = computed(() => props.tone !== 'light')
       <RevealOnScroll
         as="p"
         class="flex items-start gap-2.5 text-sm font-bold tracking-eyebrow uppercase"
-        :class="onDark ? 'text-maroon-200' : 'text-brand-600'"
+        :class="eyebrow.text"
       >
-        <span aria-hidden="true" class="mt-[0.45em] size-2 shrink-0 rounded-full" :class="onDark ? 'bg-maroon-200' : 'bg-brand-600'" />
+        <span aria-hidden="true" class="mt-[0.45em] size-2 shrink-0 rounded-full" :class="eyebrow.dot" />
         {{ copy.eyebrow }}
       </RevealOnScroll>
       <RevealOnScroll
