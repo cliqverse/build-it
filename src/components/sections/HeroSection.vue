@@ -40,7 +40,7 @@ const isStandout = (index: number) => index === projectTypes.value.length - 1
           class="isolate mt-7 text-hero font-bold text-ink"
         >
           <span class="text-brand-600">{{ hero.title.lead }}</span> <br class="hidden sm:block" /><span
-            class="marker whitespace-nowrap"
+            class="whitespace-nowrap text-brand-600"
             >{{ hero.title.highlight }}</span
           >{{ ' ' }}<br class="hidden sm:block" /><span class="inline-block text-balance">{{ hero.title.rest }}</span>
         </RevealOnScroll>

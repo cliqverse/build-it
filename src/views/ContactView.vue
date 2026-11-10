@@ -2,6 +2,7 @@
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import EnquiryForm from '@/components/blocks/EnquiryForm.vue'
 import PageHero from '@/components/layout/PageHero.vue'
 import AppIcon from '@/components/ui/AppIcon.vue'
 import AppLink from '@/components/ui/AppLink.vue'
@@ -50,7 +51,10 @@ usePageMeta(() => contact.value.meta)
             {{ picked.label }}
           </span>
         </p>
-        <ul class="mt-6 grid gap-5" aria-labelledby="contact-options">
+        <RevealOnScroll class="mt-6">
+          <EnquiryForm :copy="contact.form" :project-types="projectTypes" :picked="picked?.id" :email="CONTACT_EMAIL" />
+        </RevealOnScroll>
+        <ul class="mt-5 grid gap-5" aria-labelledby="contact-options">
           <RevealOnScroll
             v-for="(option, i) in contact.options"
             :key="option.title"

@@ -8,9 +8,10 @@ const UPDATED = '7 November 2026'
 /**
  * Contact, legal and error pages.
  *
- * The legal wording describes how this website works today (no cookies, no
- * analytics, no forms). It is a starting draft: have it reviewed before launch,
- * and update it whenever the site starts collecting anything new.
+ * The legal wording describes how this website works today (no cookies or
+ * analytics; one contact form, whose messages go to the team on WhatsApp). It is
+ * a starting draft: have it reviewed before launch, and update it whenever the
+ * site starts collecting anything new.
  */
 export const usePagesStore = defineStore('pages', () => {
   const contact = ref<ContactPage>({
@@ -22,6 +23,36 @@ export const usePagesStore = defineStore('pages', () => {
       eyebrow: 'Contact',
       title: 'Let’s talk about your project.',
       intro: `Tell us what you need, big or small. We respond within ${RESPONSE_TIME}, and everything you share stays confidential.`,
+    },
+    form: {
+      title: 'Send us a message',
+      body: `Tell us what you need in a few lines. We’ll reply on WhatsApp within ${RESPONSE_TIME}.`,
+      fields: {
+        name: { label: 'Your name', error: 'Please tell us your name.' },
+        phone: {
+          label: 'Your WhatsApp number',
+          hint: 'Include your country code, such as +234 for Nigeria.',
+          placeholder: '+234 800 000 0000',
+          error: 'Please enter a WhatsApp number that starts with your country code, such as +234.',
+        },
+        need: { label: 'What do you need? (optional)' },
+        message: {
+          label: 'Your message',
+          placeholder: 'A few lines about your idea and when you need it.',
+          error: 'Please add a short message.',
+        },
+      },
+      notSure: 'Not sure yet',
+      honeypot: 'Leave this field empty',
+      consent: 'By sending this, you agree that BuildIt can reply to you on WhatsApp.',
+      privacyLink: { label: 'How we use your details', href: '/privacy' },
+      submit: 'Send message',
+      sending: 'Sending…',
+      success: {
+        title: 'Thanks, your message is on its way.',
+        body: `We’ll reply on WhatsApp within ${RESPONSE_TIME}.`,
+      },
+      failed: 'Sorry, your message didn’t go through. Please try again, or email us at',
     },
     optionsTitle: 'Pick your path',
     assurancesTitle: 'Every conversation comes with',
@@ -49,12 +80,6 @@ export const usePagesStore = defineStore('pages', () => {
         title: 'Get expert advice',
         body: 'Not sure what you need yet? Book a consultation and we’ll help you decide what to build, what it will cost and where to start.',
         link: { label: 'Book a consultation', href: CONSULTATION_MAILTO },
-      },
-      {
-        icon: 'mail',
-        title: 'Just have a question?',
-        body: 'Ask us anything. No jargon, no pressure.',
-        link: { label: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
       },
     ],
     stepsTitle: 'What happens next',
@@ -87,7 +112,8 @@ export const usePagesStore = defineStore('pages', () => {
         {
           heading: 'What we collect',
           paragraphs: [
-            'This website does not use analytics, advertising trackers or contact forms, and it does not ask you to create an account.',
+            'This website does not use analytics or advertising trackers, and it does not ask you to create an account.',
+            'If you use the form on our contact page, we receive your name, your WhatsApp number, the kind of project you pick and your message. The website passes them straight to our team as a WhatsApp message, sent through WhatsApp’s business platform, which is run by Meta. The website itself does not store them.',
             'If you email us, we receive your email address, your name if you include it, and anything else you choose to send.',
             'If you message us on WhatsApp, we receive your phone number, your WhatsApp profile name and anything else you choose to send. WhatsApp is a Meta service, and your use of it is covered by WhatsApp’s own privacy policy.',
             'Our hosting provider may keep standard server logs, such as IP addresses and request times, to keep the site secure and reliable.',
@@ -96,7 +122,7 @@ export const usePagesStore = defineStore('pages', () => {
         {
           heading: 'How we use it',
           paragraphs: [
-            'We use the details in your email or WhatsApp message only to reply and, if you ask us to, to arrange a call or prepare a proposal. We do not sell your information or use it for advertising.',
+            'We use what you send us, whether by email, WhatsApp or the contact form, only to reply and, if you ask us to, to arrange a call or prepare a proposal. We do not sell your information or use it for advertising.',
           ],
         },
         {

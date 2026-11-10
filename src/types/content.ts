@@ -227,9 +227,36 @@ export interface ContactOption {
   whatsapp?: boolean
 }
 
+export interface FormField {
+  label: string
+  hint?: string
+  placeholder?: string
+  /** Shown under the field when it's empty or the server rejects it. */
+  error?: string
+}
+
+/** The contact page form, which sends enquiries to the team on WhatsApp through `api/enquiry.ts`. */
+export interface EnquiryFormCopy {
+  title: string
+  body: string
+  fields: { name: FormField; phone: FormField; need: FormField; message: FormField }
+  /** The project list's empty choice, and what the team sees when nothing is picked. */
+  notSure: string
+  /** Label of the hidden field that catches spam bots. */
+  honeypot: string
+  consent: string
+  privacyLink: Link
+  submit: string
+  sending: string
+  success: { title: string; body: string }
+  /** Shown when the message couldn't be sent; the contact email follows it as a link. */
+  failed: string
+}
+
 export interface ContactPage {
   meta: PageMeta
   hero: PageHeroCopy
+  form: EnquiryFormCopy
   optionsTitle: string
   assurancesTitle: string
   assurances: string[]
