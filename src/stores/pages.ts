@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { CONSULTATION_MAILTO, CONTACT_EMAIL, PROJECT_MAILTO, RESPONSE_TIME, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/stores/site'
+import { CONSULTATION_MAILTO, CONTACT_EMAIL, PROJECT_MAILTO, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/stores/site'
 import type { ContactPage, LegalDoc, LegalDocId, NotFoundPage } from '@/types/content'
 
 const UPDATED = '7 November 2026'
@@ -17,23 +17,23 @@ export const usePagesStore = defineStore('pages', () => {
   const contact = ref<ContactPage>({
     meta: {
       title: 'Contact | BuildIt',
-      description: `Tell BuildIt what you need built, big or small. We respond within ${RESPONSE_TIME}, and everything you share stays confidential.`,
+      description: 'Tell BuildIt what you need built, big or small. We reply as soon as you reach out, and everything you share stays confidential.',
     },
     hero: {
       eyebrow: 'Contact',
       title: 'Let’s talk about your project.',
-      intro: `Tell us what you need, big or small. We respond within ${RESPONSE_TIME}, and everything you share stays confidential.`,
+      intro: 'Tell us what you need, big or small. We reply as soon as you reach out, and everything you share stays confidential.',
     },
     form: {
       title: 'Send us a message',
-      body: `Tell us what you need in a few lines. We’ll reply on WhatsApp within ${RESPONSE_TIME}.`,
+      body: 'Tell us what you need in a few lines. We’ll pick it up straight away and reply on WhatsApp.',
       fields: {
         name: { label: 'Your name', error: 'Please tell us your name.' },
         phone: {
           label: 'Your WhatsApp number',
-          hint: 'Include your country code, such as +234 for Nigeria.',
-          placeholder: '+234 800 000 0000',
-          error: 'Please enter a WhatsApp number that starts with your country code, such as +234.',
+          hint: 'Include your country code, such as +34 for Spain.',
+          placeholder: '+34 600 000 000',
+          error: 'Please enter a WhatsApp number that starts with your country code, such as +34.',
         },
         need: { label: 'What do you need? (optional)' },
         message: {
@@ -50,7 +50,7 @@ export const usePagesStore = defineStore('pages', () => {
       sending: 'Sending…',
       success: {
         title: 'Thanks, your message is on its way.',
-        body: `We’ll reply on WhatsApp within ${RESPONSE_TIME}.`,
+        body: 'We’ll get back to you on WhatsApp shortly.',
       },
       failed: 'Sorry, your message didn’t go through. Please try again, or email us at',
     },
@@ -72,7 +72,7 @@ export const usePagesStore = defineStore('pages', () => {
       {
         icon: 'whatsapp',
         title: 'Prefer WhatsApp?',
-        body: `Message us on ${WHATSAPP_DISPLAY} about anything, from a quick question to a whole project. We reply within ${RESPONSE_TIME}.`,
+        body: `Message us on ${WHATSAPP_DISPLAY} about anything, from a quick question to a whole project. We’ll get back to you promptly.`,
         link: { label: 'Chat with us on WhatsApp', href: WHATSAPP_URL },
         whatsapp: true,
       },
@@ -84,7 +84,7 @@ export const usePagesStore = defineStore('pages', () => {
         body: 'A few lines about what you need and when you need it is plenty.',
       },
       {
-        title: `We respond within ${RESPONSE_TIME}`,
+        title: 'We get back to you promptly',
         body: 'With thoughtful questions, first ideas or times for a call.',
       },
       {

@@ -3,8 +3,6 @@ import { computed, ref } from 'vue'
 import type { Brand, ClosingCta, Footer, Nav, ProjectType, Testimonial, UiStrings } from '@/types/content'
 
 export const CONTACT_EMAIL = 'hello@buildit.com'
-/** Our response-time promise, used everywhere the site mentions it. Keep it to a time the team always meets. */
-export const RESPONSE_TIME = '24\u00a0hours'
 export const PROJECT_MAILTO = `mailto:${CONTACT_EMAIL}?subject=New%20project`
 export const CONSULTATION_MAILTO = `mailto:${CONTACT_EMAIL}?subject=Consultation`
 
@@ -110,15 +108,15 @@ export const useSiteStore = defineStore('site', () => {
 
   const cta = ref<ClosingCta>({
     eyebrow: 'Talk to us',
-    title: { lead: 'Ready to move?', highlight: `We respond within ${RESPONSE_TIME}.` },
-    body: `Share a few details about your project. We’ll come back within ${RESPONSE_TIME} with clear next steps, and everything you share stays confidential.`,
+    title: { lead: 'Ready to move?', highlight: 'We reply as soon as you reach out.' },
+    body: 'Share a few details about your project and we’ll get back to you promptly with clear next steps. Everything you share stays confidential.',
     primary: { label: 'Start your project', href: '/contact' },
     secondary: { label: 'See success stories', href: '/work' },
     channels: [
       { icon: 'mail', prompt: 'Prefer email?', link: { label: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` } },
       { icon: 'whatsapp', prompt: 'Prefer WhatsApp?', link: { label: WHATSAPP_DISPLAY, href: WHATSAPP_URL } },
     ],
-    footnote: `Response within ${RESPONSE_TIME} · Confidential by default · Over a decade of delivery`,
+    footnote: 'Prompt replies · Confidential by default · Over a decade of delivery',
   })
 
   const footer = ref<Footer>({

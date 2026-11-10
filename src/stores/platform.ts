@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { RESPONSE_TIME } from '@/stores/site'
 import type { Assurance, PageHeroCopy, PageMeta, Phase, PlatformLayer, SectionCopy, Speed } from '@/types/content'
 
 /** Copy for "How we work", plus the speed story shared with the home page. */
@@ -33,9 +32,9 @@ export const usePlatformStore = defineStore('platform', () => {
     claim: 'Launch in weeks, not months.',
     steps: [
       {
-        marker: `Within ${RESPONSE_TIME}`,
+        marker: 'Right away',
         title: 'We respond',
-        body: `Tell us about your project and you’ll hear back within ${RESPONSE_TIME}, with clear next steps.`,
+        body: 'Tell us about your project and we’ll get back to you promptly, with clear next steps.',
       },
       {
         marker: 'Fast start',

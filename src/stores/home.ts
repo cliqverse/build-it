@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { RESPONSE_TIME } from '@/stores/site'
 import { useWorkStore } from '@/stores/work'
 import type { Client, HeroCard, HomeHero, PageMeta, SectionCopy, Stat } from '@/types/content'
 
@@ -27,7 +26,7 @@ export const useHomeStore = defineStore('home', () => {
     { icon: 'shield', label: 'Uptime', value: '99.9%', note: 'Online and working', tone: 'brand' },
     { icon: 'rocket', label: 'Products launched', value: '30+', tone: 'maroon' },
     { icon: 'compass', label: 'Years building software', value: '10+', tone: 'brand' },
-    { icon: 'bolt', label: 'We respond', value: `Within ${RESPONSE_TIME}`, tone: 'maroon' },
+    { icon: 'bolt', label: 'We respond', value: 'Promptly', tone: 'maroon' },
     { icon: 'calendar', label: 'Every week', value: 'Working progress', tone: 'brand', bars: [36, 52, 48, 68, 76, 92] },
     { icon: 'rocket', label: 'Recently launched', value: 'CliqMit', note: 'Discover, book and host events', tone: 'maroon' },
   ])
