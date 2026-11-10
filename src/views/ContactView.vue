@@ -9,20 +9,24 @@ import IconBadge from '@/components/ui/IconBadge.vue'
 import RevealOnScroll from '@/components/ui/RevealOnScroll.vue'
 import { usePageMeta } from '@/composables/usePageMeta'
 import { usePagesStore } from '@/stores/pages'
-import { CONTACT_EMAIL, useSiteStore } from '@/stores/site'
+import { CONTACT_EMAIL, useSiteStore, whatsappLink } from '@/stores/site'
 import type { ContactOption } from '@/types/content'
 import { pad } from '@/utils/format'
 
 const { contact } = storeToRefs(usePagesStore())
-const { projectTypes } = storeToRefs(useSiteStore())
+const { projectTypes, ui } = storeToRefs(useSiteStore())
 const route = useRoute()
 
 const picked = computed(() => projectTypes.value.find((type) => type.id === route.query.need))
 
 const hrefFor = (option: ContactOption) => {
-  if (!option.project || !picked.value) return option.link.href
-  const subject = `${contact.value.projectSubject}: ${picked.value.label}`
-  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`
+  if (!picked.value) return option.link.href
+  if (option.project) {
+    const subject = `${contact.value.projectSubject}: ${picked.value.label}`
+    return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`
+  }
+  if (option.whatsapp) return whatsappLink(`${contact.value.whatsappMessage} ${picked.value.label}.`)
+  return option.link.href
 }
 
 usePageMeta(() => contact.value.meta)
@@ -62,7 +66,7 @@ usePageMeta(() => contact.value.meta)
                   :href="hrefFor(option)"
                   class="group/link mt-1.5 -mb-2.5 inline-flex items-center gap-2 py-2.5 font-bold text-ink underline decoration-brand-600/40 decoration-2 underline-offset-4 transition-colors duration-300 [overflow-wrap:anywhere] hover:decoration-brand-600"
                 >
-                  {{ option.link.label }}
+                  <span>{{ option.link.label }}<span v-if="option.whatsapp" class="sr-only"> {{ ui.newTab }}</span></span>
                   <AppIcon
                     name="arrow-right"
                     :size="18"

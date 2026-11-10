@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { CONSULTATION_MAILTO, CONTACT_EMAIL, PROJECT_MAILTO, RESPONSE_TIME } from '@/stores/site'
+import { CONSULTATION_MAILTO, CONTACT_EMAIL, PROJECT_MAILTO, RESPONSE_TIME, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/stores/site'
 import type { ContactPage, LegalDoc, LegalDocId, NotFoundPage } from '@/types/content'
 
 const UPDATED = '7 November 2026'
@@ -28,6 +28,7 @@ export const usePagesStore = defineStore('pages', () => {
     assurances: ['Confidentiality, with an NDA on request', 'A named lead from day one', 'Full ownership of everything we build'],
     pickedLabel: 'You’re interested in',
     projectSubject: 'New project',
+    whatsappMessage: 'Hi BuildIt! I’m interested in:',
     options: [
       {
         icon: 'rocket',
@@ -35,6 +36,13 @@ export const usePagesStore = defineStore('pages', () => {
         body: 'Tell us what you’d like built. A few lines is plenty. We’ll take it from there.',
         link: { label: 'Email us your idea', href: PROJECT_MAILTO },
         project: true,
+      },
+      {
+        icon: 'whatsapp',
+        title: 'Prefer WhatsApp?',
+        body: `Message us on ${WHATSAPP_DISPLAY} about anything, from a quick question to a whole project. We reply within ${RESPONSE_TIME}.`,
+        link: { label: 'Chat with us on WhatsApp', href: WHATSAPP_URL },
+        whatsapp: true,
       },
       {
         icon: 'compass',
@@ -73,7 +81,7 @@ export const usePagesStore = defineStore('pages', () => {
         description: 'What information the BuildIt website collects and how we use it.',
       },
       title: 'Privacy policy',
-      updated: UPDATED,
+      updated: '10 November 2026',
       intro: 'This policy explains what information the BuildIt website collects and how we use it.',
       sections: [
         {
@@ -81,13 +89,14 @@ export const usePagesStore = defineStore('pages', () => {
           paragraphs: [
             'This website does not use analytics, advertising trackers or contact forms, and it does not ask you to create an account.',
             'If you email us, we receive your email address, your name if you include it, and anything else you choose to send.',
+            'If you message us on WhatsApp, we receive your phone number, your WhatsApp profile name and anything else you choose to send. WhatsApp is a Meta service, and your use of it is covered by WhatsApp’s own privacy policy.',
             'Our hosting provider may keep standard server logs, such as IP addresses and request times, to keep the site secure and reliable.',
           ],
         },
         {
           heading: 'How we use it',
           paragraphs: [
-            'We use the details in your email only to reply and, if you ask us to, to arrange a call or prepare a proposal. We do not sell your information or use it for advertising.',
+            'We use the details in your email or WhatsApp message only to reply and, if you ask us to, to arrange a call or prepare a proposal. We do not sell your information or use it for advertising.',
           ],
         },
         {

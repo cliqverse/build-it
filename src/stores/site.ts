@@ -8,6 +8,14 @@ export const RESPONSE_TIME = '24\u00a0hours'
 export const PROJECT_MAILTO = `mailto:${CONTACT_EMAIL}?subject=New%20project`
 export const CONSULTATION_MAILTO = `mailto:${CONTACT_EMAIL}?subject=Consultation`
 
+/** The number the team answers on WhatsApp, in international format with digits only, as wa.me links need it. */
+export const WHATSAPP_NUMBER = '2348160905978'
+/** The same number as visitors read it. Keep the two in step. */
+export const WHATSAPP_DISPLAY = '+234 816 090 5978'
+/** Opens a WhatsApp chat with the team, with `message` already typed in and ready to send. */
+export const whatsappLink = (message: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+export const WHATSAPP_URL = whatsappLink('Hi BuildIt! I’d like to talk about a project.')
+
 /**
  * Site-wide copy: brand, navigation, footer, the closing call to action and
  * interface strings. Page-specific copy lives in the other stores in this folder,
@@ -107,6 +115,8 @@ export const useSiteStore = defineStore('site', () => {
     primary: { label: 'Start your project', href: '/contact' },
     secondary: { label: 'See success stories', href: '/work' },
     emailPrompt: 'Prefer email?',
+    whatsappPrompt: 'Prefer WhatsApp?',
+    whatsapp: { label: WHATSAPP_DISPLAY, href: WHATSAPP_URL },
     footnote: `Response within ${RESPONSE_TIME} · Confidential by default · Over a decade of delivery`,
   })
 
@@ -135,6 +145,7 @@ export const useSiteStore = defineStore('site', () => {
         title: 'Let’s talk',
         links: [
           { label: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
+          { label: 'Chat on WhatsApp', href: WHATSAPP_URL },
           { label: 'Start your project', href: PROJECT_MAILTO },
         ],
       },

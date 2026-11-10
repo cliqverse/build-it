@@ -26,6 +26,7 @@ export type IconName =
   | 'key'
   | 'activity'
   | 'refresh'
+  | 'whatsapp'
 
 /** `href` may be a path (`/work`), an in-page hash (`#related-work`), a `mailto:` or an absolute URL. */
 export interface Link {
@@ -210,6 +211,8 @@ export interface ClosingCta {
   primary: Link
   secondary: Link
   emailPrompt: string
+  whatsappPrompt: string
+  whatsapp: Link
   footnote: string
 }
 
@@ -220,6 +223,8 @@ export interface ContactOption {
   link: Link
   /** The project option gets its email subject pre-filled with the type picked on the home page. */
   project?: boolean
+  /** The WhatsApp option gets its message pre-filled the same way, and opens in a new tab. */
+  whatsapp?: boolean
 }
 
 export interface ContactPage {
@@ -230,6 +235,8 @@ export interface ContactPage {
   assurances: string[]
   pickedLabel: string
   projectSubject: string
+  /** Opens the pre-filled WhatsApp message; the picked project type follows it. */
+  whatsappMessage: string
   options: ContactOption[]
   stepsTitle: string
   steps: Capability[]

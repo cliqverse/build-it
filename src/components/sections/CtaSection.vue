@@ -5,7 +5,7 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import RevealOnScroll from '@/components/ui/RevealOnScroll.vue'
 import { useSiteStore } from '@/stores/site'
 
-const { brand, cta } = storeToRefs(useSiteStore())
+const { brand, cta, ui } = storeToRefs(useSiteStore())
 </script>
 
 <template>
@@ -27,12 +27,20 @@ const { brand, cta } = storeToRefs(useSiteStore())
       <RevealOnScroll :delay="240" class="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col lg:items-stretch">
         <BaseButton as="a" :href="cta.primary.href" variant="light" size="lg" icon="arrow-right">{{ cta.primary.label }}</BaseButton>
         <BaseButton as="a" :href="cta.secondary.href" variant="outline-light" size="lg">{{ cta.secondary.label }}</BaseButton>
-        <p class="mt-2 text-sm text-white/80">
-          {{ cta.emailPrompt }}
-          <AppLink :href="`mailto:${brand.email}`" class="font-bold text-white underline decoration-2 underline-offset-4">
-            {{ brand.email }}
-          </AppLink>
-        </p>
+        <div class="mt-2 space-y-1 text-sm text-white/80">
+          <p>
+            {{ cta.emailPrompt }}
+            <AppLink :href="`mailto:${brand.email}`" class="font-bold text-white underline decoration-2 underline-offset-4">
+              {{ brand.email }}
+            </AppLink>
+          </p>
+          <p>
+            {{ cta.whatsappPrompt }}
+            <AppLink :href="cta.whatsapp.href" class="font-bold text-white underline decoration-2 underline-offset-4">
+              {{ cta.whatsapp.label }}<span class="sr-only"> {{ ui.newTab }}</span>
+            </AppLink>
+          </p>
+        </div>
       </RevealOnScroll>
     </div>
     <div class="container-page">

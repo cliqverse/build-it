@@ -33,7 +33,7 @@ Requires Node 20.19+ or 22.12+. If your global pnpm is older, pnpm downloads the
 
 Each view sets its own document title and description through `usePageMeta`. After every navigation, focus moves to the new page (or to the linked section) for keyboard and screen-reader users.
 
-The chips under the home headline link to `/contact?need=<id>`; the contact page then shows the chosen project type and pre-fills the email subject with it. The list lives in `stores/site.ts` → `projectTypes`.
+The chips under the home headline link to `/contact?need=<id>`; the contact page then shows the chosen project type and pre-fills both the email subject and the WhatsApp message with it. The list lives in `stores/site.ts` → `projectTypes`.
 
 ## Where things live
 
@@ -54,6 +54,7 @@ The chips under the home headline link to `/contact?need=<id>`; the contact page
 
 - **Hero cards** (`stores/home.ts` → `heroCards`) repeat figures stated elsewhere on the site (10+ years, 30+ products, 99.9% uptime, the response time). Keep them in step if the numbers change.
 - **Contact email** is set once, in `stores/site.ts` → `CONTACT_EMAIL` (currently `hello@buildit.com`), and used everywhere the site shows or links to an email address. Make sure it's a working inbox on a domain you own.
+- **WhatsApp number** is set once, in `stores/site.ts` → `WHATSAPP_NUMBER` (digits only, for the `wa.me` links) and `WHATSAPP_DISPLAY` (as shown on the page), currently +234 816 090 5978. Keep the two in step. It's used on the contact page, in the closing call to action and in the footer. Use a number the team answers in the WhatsApp or WhatsApp Business app (a number registered only to the WhatsApp Cloud API can't be answered from a phone), and reply within the same response time as email.
 - **Testimonials** (`stores/site.ts`) are drafted quotes for Ikenna (Mobiey), Ajie Takon (Kashia) and Costly Ayang (Expensive Group). Get each person's written approval of the exact wording before launch. The "Trusted by teams at" names come from the success stories in `stores/work.ts`, so they stay in step automatically.
 - **Response time** is set once, in `stores/site.ts` → `RESPONSE_TIME` (currently 24 hours), and used everywhere the site mentions it. Only promise a time the team always meets.
 - **Enterprise commitments** (`stores/platform.ts` → `assurance`, and the contact page list in `stores/pages.ts`): confidentiality and NDAs on request, a named project lead, client ownership of code and designs, monitoring, and support response times agreed up front. Confirm the team honours each one before launch.
