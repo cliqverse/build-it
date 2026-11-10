@@ -175,6 +175,7 @@ export interface Phase {
 }
 
 export interface PlatformLayer {
+  icon: IconName
   name: string
   tag: string
   caption: string
@@ -221,6 +222,8 @@ export interface ContactOption {
   title: string
   body: string
   link: Link
+  /** A second action shown beside the main link, used as is. */
+  secondaryLink?: Link
   /** The project option gets its email subject pre-filled with the type picked on the home page. */
   project?: boolean
   /** The WhatsApp option gets its message pre-filled the same way, and opens in a new tab. */

@@ -30,6 +30,11 @@ const hrefFor = (option: ContactOption) => {
   return option.link.href
 }
 
+const linksFor = (option: ContactOption) => [
+  { label: option.link.label, href: hrefFor(option) },
+  ...(option.secondaryLink ? [option.secondaryLink] : []),
+]
+
 usePageMeta(() => contact.value.meta)
 </script>
 
@@ -66,18 +71,22 @@ usePageMeta(() => contact.value.meta)
               <div class="min-w-0">
                 <h3 class="font-display text-2xl font-bold tracking-tight text-ink">{{ option.title }}</h3>
                 <p class="mt-1 text-ink/70">{{ option.body }}</p>
-                <AppLink
-                  :href="hrefFor(option)"
-                  class="group/link mt-1.5 -mb-2.5 inline-flex items-center gap-2 py-2.5 font-bold text-ink underline decoration-brand-600/40 decoration-2 underline-offset-4 transition-colors duration-300 [overflow-wrap:anywhere] hover:decoration-brand-600"
-                >
-                  <span>{{ option.link.label }}<span v-if="option.whatsapp" class="sr-only"> {{ ui.newTab }}</span></span>
-                  <AppIcon
-                    name="arrow-right"
-                    :size="18"
-                    :stroke-width="2.25"
-                    class="shrink-0 text-brand-600 transition-transform duration-300 ease-smooth group-hover/link:translate-x-1 motion-reduce:transition-none"
-                  />
-                </AppLink>
+                <div class="mt-1.5 -mb-2.5 flex flex-wrap gap-x-6">
+                  <AppLink
+                    v-for="link in linksFor(option)"
+                    :key="link.label"
+                    :href="link.href"
+                    class="group/link inline-flex items-center gap-2 py-2.5 font-bold text-ink underline decoration-brand-600/40 decoration-2 underline-offset-4 transition-colors duration-300 [overflow-wrap:anywhere] hover:decoration-brand-600"
+                  >
+                    <span>{{ link.label }}<span v-if="option.whatsapp" class="sr-only"> {{ ui.newTab }}</span></span>
+                    <AppIcon
+                      name="arrow-right"
+                      :size="18"
+                      :stroke-width="2.25"
+                      class="shrink-0 text-brand-600 transition-transform duration-300 ease-smooth group-hover/link:translate-x-1 motion-reduce:transition-none"
+                    />
+                  </AppLink>
+                </div>
               </div>
             </div>
           </RevealOnScroll>

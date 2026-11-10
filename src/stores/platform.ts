@@ -142,19 +142,21 @@ export const usePlatformStore = defineStore('platform', () => {
   const architectureSection = ref<SectionCopy>({
     id: 'one-team',
     eyebrow: 'Under one roof',
-    title: 'One team for the whole job.',
+    title: 'One dedicated team for the job.',
     intro: 'No juggling designers, developers and AI specialists from different companies. Everything works together, so nothing falls through the cracks.',
   })
 
   const layers = ref<PlatformLayer[]>([
-    { name: 'BuildIt Access', tag: 'What your customers use', caption: 'Easy for everyone, everywhere' },
-    { name: 'BuildIt Intelligence', tag: 'What makes it smart', caption: 'AI that saves time' },
-    { name: 'BuildIt Software', tag: 'What keeps it running', caption: 'Websites, apps and systems' },
+    { icon: 'access', name: 'BuildIt Access', tag: 'What your customers use', caption: 'Easy for everyone, everywhere' },
+    { icon: 'intelligence', name: 'BuildIt Intelligence', tag: 'What makes it smart', caption: 'AI that saves time' },
+    { icon: 'build', name: 'BuildIt Software', tag: 'What keeps it running', caption: 'Websites, apps and systems' },
   ])
 
   const diagramLabel = ref(
     'Diagram: BuildIt Software keeps everything running, BuildIt Intelligence makes it smart, and BuildIt Access makes it easy for every customer to use, with what we learn after launch feeding into the next improvement.',
   )
 
-  return { meta, hero, speed, assurance, phasesSection, phases, architectureSection, layers, diagramLabel }
+  const diagramLoop = ref('What we learn after launch')
+
+  return { meta, hero, speed, assurance, phasesSection, phases, architectureSection, layers, diagramLabel, diagramLoop }
 })

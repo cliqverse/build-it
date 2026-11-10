@@ -1,11 +1,20 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
+import AppIcon from '@/components/ui/AppIcon.vue'
 import AppLink from '@/components/ui/AppLink.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
+import IconBadge from '@/components/ui/IconBadge.vue'
 import RevealOnScroll from '@/components/ui/RevealOnScroll.vue'
 import { useSiteStore } from '@/stores/site'
+import type { IconName } from '@/types/content'
 
 const { brand, cta, ui } = storeToRefs(useSiteStore())
+
+const channels = computed<{ icon: IconName; prompt: string; label: string; href: string; newTab?: boolean }[]>(() => [
+  { icon: 'mail', prompt: cta.value.emailPrompt, label: brand.value.email, href: `mailto:${brand.value.email}` },
+  { icon: 'whatsapp', prompt: cta.value.whatsappPrompt, label: cta.value.whatsapp.label, href: cta.value.whatsapp.href, newTab: true },
+])
 </script>
 
 <template>
@@ -24,23 +33,33 @@ const { brand, cta, ui } = storeToRefs(useSiteStore())
         </RevealOnScroll>
       </div>
 
-      <RevealOnScroll :delay="240" class="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col lg:items-stretch">
-        <BaseButton as="a" :href="cta.primary.href" variant="light" size="lg" icon="arrow-right">{{ cta.primary.label }}</BaseButton>
-        <BaseButton as="a" :href="cta.secondary.href" variant="outline-light" size="lg">{{ cta.secondary.label }}</BaseButton>
-        <div class="mt-2 space-y-1 text-sm text-white/80">
-          <p>
-            {{ cta.emailPrompt }}
-            <AppLink :href="`mailto:${brand.email}`" class="font-bold text-white underline decoration-2 underline-offset-4">
-              {{ brand.email }}
-            </AppLink>
-          </p>
-          <p>
-            {{ cta.whatsappPrompt }}
-            <AppLink :href="cta.whatsapp.href" class="font-bold text-white underline decoration-2 underline-offset-4">
-              {{ cta.whatsapp.label }}<span class="sr-only"> {{ ui.newTab }}</span>
-            </AppLink>
-          </p>
+      <RevealOnScroll :delay="240" class="lg:col-span-4">
+        <div class="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-stretch">
+          <BaseButton as="a" :href="cta.primary.href" variant="light" size="lg" icon="arrow-right">{{ cta.primary.label }}</BaseButton>
+          <BaseButton as="a" :href="cta.secondary.href" variant="outline-light" size="lg">{{ cta.secondary.label }}</BaseButton>
         </div>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+          <li v-for="channel in channels" :key="channel.icon">
+            <AppLink
+              :href="channel.href"
+              class="group/channel flex items-center gap-4 rounded-xl border border-white/25 p-3 pr-4 transition-colors duration-300 ease-smooth hover:border-white/50 hover:bg-white/10"
+            >
+              <IconBadge :icon="channel.icon" tone="inverse" size="sm" />
+              <span class="min-w-0 flex-1">
+                <span class="block text-sm text-white/75">{{ channel.prompt }}</span>
+                <span class="block font-bold text-white [overflow-wrap:anywhere]">
+                  {{ channel.label }}<span v-if="channel.newTab" class="sr-only"> {{ ui.newTab }}</span>
+                </span>
+              </span>
+              <AppIcon
+                name="arrow-up-right"
+                :size="18"
+                :stroke-width="2.25"
+                class="shrink-0 text-white/75 transition-[translate,color] duration-300 ease-smooth group-hover/channel:text-white motion-safe:group-hover/channel:translate-x-0.5 motion-safe:group-hover/channel:-translate-y-0.5"
+              />
+            </AppLink>
+          </li>
+        </ul>
       </RevealOnScroll>
     </div>
     <div class="container-page">

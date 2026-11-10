@@ -64,8 +64,9 @@ export const usePagesStore = defineStore('pages', () => {
       {
         icon: 'rocket',
         title: 'Start a project',
-        body: 'Tell us what you’d like built. A few lines is plenty. We’ll take it from there.',
+        body: 'Tell us what you’d like built. A few lines is plenty. Not sure what you need yet? Book a consultation and we’ll help you decide what to build, what it will cost and where to start.',
         link: { label: 'Email us your idea', href: PROJECT_MAILTO },
+        secondaryLink: { label: 'Book a consultation', href: CONSULTATION_MAILTO },
         project: true,
       },
       {
@@ -74,12 +75,6 @@ export const usePagesStore = defineStore('pages', () => {
         body: `Message us on ${WHATSAPP_DISPLAY} about anything, from a quick question to a whole project. We reply within ${RESPONSE_TIME}.`,
         link: { label: 'Chat with us on WhatsApp', href: WHATSAPP_URL },
         whatsapp: true,
-      },
-      {
-        icon: 'compass',
-        title: 'Get expert advice',
-        body: 'Not sure what you need yet? Book a consultation and we’ll help you decide what to build, what it will cost and where to start.',
-        link: { label: 'Book a consultation', href: CONSULTATION_MAILTO },
       },
     ],
     stepsTitle: 'What happens next',

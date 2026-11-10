@@ -6,7 +6,7 @@ import SectionHeading from '@/components/ui/SectionHeading.vue'
 import { usePlatformStore } from '@/stores/platform'
 import { pad } from '@/utils/format'
 
-const { architectureSection, layers, diagramLabel } = storeToRefs(usePlatformStore())
+const { architectureSection, layers, diagramLabel, diagramLoop } = storeToRefs(usePlatformStore())
 </script>
 
 <template>
@@ -30,7 +30,7 @@ const { architectureSection, layers, diagramLabel } = storeToRefs(usePlatformSto
       </div>
 
       <RevealOnScroll :delay="200" class="pr-3 pb-3">
-        <PlatformDiagram :layers="layers" :label="diagramLabel" />
+        <PlatformDiagram :layers="layers" :label="diagramLabel" :loop="diagramLoop" />
       </RevealOnScroll>
     </div>
   </section>

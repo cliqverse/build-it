@@ -169,6 +169,16 @@
     outline-offset: 3px;
   }
 
+  /* Form fields draw the ring over their own border, so focus shows one ring rather than a border plus a floating outline. */
+  :where(input:not([type="checkbox"], [type="radio"]), select, textarea):focus-visible {
+    outline-offset: -1px;
+  }
+
+  /* A field with an error keeps its maroon edge while focused (the form focuses the first invalid field on submit). */
+  [aria-invalid="true"]:focus-visible {
+    outline-color: var(--color-maroon-700);
+  }
+
   /* Containers receive programmatic focus after navigation; no ring needed there. */
   [tabindex="-1"]:focus {
     outline: none;
@@ -351,4 +361,17 @@
     transform: none;
     transition: none;
   }
+}
+
+/*
+ * Browser autofill paints fields light blue and can't be overridden directly, so a white inset
+ * shadow covers the fill (keeping the fields' soft shadow) and the text stays ink. Unlayered so it
+ * wins over the `shadow-soft` utility.
+ */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-ink);
+  caret-color: var(--color-ink);
+  box-shadow: inset 0 0 0 100vmax white, var(--shadow-soft);
 }
