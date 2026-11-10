@@ -12,6 +12,13 @@ const GRAPH_API = 'https://graph.facebook.com/v25.0'
 const DEFAULT_TEMPLATE = 'new_enquiry_alert'
 const DEFAULT_LANGUAGE = 'en'
 
+/**
+ * WhatsApp refuses a template message whose body, once the details are filled in, runs past
+ * 1,024 characters. These limits leave room for the template's own text (about 110 characters
+ * for the one in the README). The form's maxlength values match them.
+ */
+const MAX = { name: 100, need: 60, message: 700 }
+
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } })
 
@@ -60,10 +67,10 @@ export async function POST(request: Request): Promise<Response> {
   // People never see the "company" field, but bots fill it in. Tell them it worked and send nothing.
   if (clean(input.company, 100)) return json({ ok: true })
 
-  const name = clean(input.name, 100)
+  const name = clean(input.name, MAX.name)
   const phone = toInternational(input.phone)
-  const need = clean(input.need, 60) || 'Not specified'
-  const message = clean(input.message, 1000)
+  const need = clean(input.need, MAX.need) || 'Not specified'
+  const message = clean(input.message, MAX.message)
   if (!name || !phone || !message) {
     const fields = [!name && 'name', !phone && 'phone', !message && 'message'].filter(Boolean)
     return json({ error: 'invalid', fields }, 400)

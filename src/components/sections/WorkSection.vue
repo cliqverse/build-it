@@ -44,7 +44,6 @@ const { ui } = storeToRefs(useSiteStore())
             :index="i"
             :reverse="i % 2 === 1"
             :visit-label="ui.visitSite"
-            :new-tab-label="ui.newTab"
           />
         </RevealOnScroll>
       </ul>

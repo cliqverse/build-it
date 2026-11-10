@@ -15,7 +15,7 @@ import type { ContactOption } from '@/types/content'
 import { pad } from '@/utils/format'
 
 const { contact } = storeToRefs(usePagesStore())
-const { projectTypes, ui } = storeToRefs(useSiteStore())
+const { projectTypes } = storeToRefs(useSiteStore())
 const route = useRoute()
 
 const picked = computed(() => projectTypes.value.find((type) => type.id === route.query.need))
@@ -78,7 +78,7 @@ usePageMeta(() => contact.value.meta)
                     :href="link.href"
                     class="group/link inline-flex items-center gap-2 py-2.5 font-bold text-ink underline decoration-brand-600/40 decoration-2 underline-offset-4 transition-colors duration-300 [overflow-wrap:anywhere] hover:decoration-brand-600"
                   >
-                    <span>{{ link.label }}<span v-if="option.whatsapp" class="sr-only"> {{ ui.newTab }}</span></span>
+                    <span>{{ link.label }}</span>
                     <AppIcon
                       name="arrow-right"
                       :size="18"

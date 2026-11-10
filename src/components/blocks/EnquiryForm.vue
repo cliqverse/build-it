@@ -33,8 +33,11 @@ const needLabel = computed(() => props.projectTypes.find((type) => type.id === f
 
 const fieldId = (name: string) => `${id}-${name}`
 const isInvalid = (field: Field) => invalid.value.includes(field)
-const describedBy = (field: Field, hasHint = false) =>
-  [hasHint && fieldId(`${field}-hint`), isInvalid(field) && fieldId(`${field}-error`)].filter(Boolean).join(' ') || undefined
+/** A field's error replaces its hint, so it is described by one or the other. */
+const describedBy = (field: Field, hasHint = false) => {
+  if (isInvalid(field)) return fieldId(`${field}-error`)
+  return hasHint ? fieldId(`${field}-hint`) : undefined
+}
 const clear = (field: Field) => {
   invalid.value = invalid.value.filter((other) => other !== field)
 }
@@ -156,7 +159,7 @@ const error = 'mt-2 text-sm font-medium text-maroon-700'
               v-model="form.message"
               name="message"
               rows="4"
-              maxlength="1000"
+              maxlength="700"
               :placeholder="copy.fields.message.placeholder"
               :class="[field, 'resize-y px-4']"
               :aria-invalid="isInvalid('message') || undefined"
@@ -166,7 +169,8 @@ const error = 'mt-2 text-sm font-medium text-maroon-700'
             <p v-if="isInvalid('message')" :id="fieldId('message-error')" :class="error">{{ copy.fields.message.error }}</p>
           </div>
 
-          <div aria-hidden="true" class="sr-only">
+          <!-- Spam trap. Not displayed at all, so browser autofill never fills it in for a real visitor. -->
+          <div class="hidden">
             <label :for="fieldId('company')">{{ copy.honeypot }}</label>
             <input :id="fieldId('company')" v-model="form.company" type="text" name="company" tabindex="-1" autocomplete="off" />
           </div>

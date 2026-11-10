@@ -46,7 +46,7 @@ The chips under the home headline link to `/contact?need=<id>`; the contact page
 | `src/components/layout/` | `SiteHeader` (with the "What we build" dropdown), `NavDropdown`, `SiteFooter`, `PageHero` (flat violet header for inner pages). |
 | `src/components/sections/` | Page sections. Shared ones (`OfferingsSection`, `SpeedSection`, `PracticesSection`, `PhasesSection`, `WorkSection`) take their copy as props. |
 | `src/components/blocks/` | `HeroCard`, `StatBlock`, `PhaseCard`, `WorkCard`, `TestimonialCard`, `PlatformDiagram`, `EnquiryForm` (the contact page form). |
-| `src/components/ui/` | Primitives: `BaseButton` (`primary` / `dark` / `outline` on light surfaces; `light` / `outline-light` on violet, maroon or ink), `AppLink`, `SectionHeading`, `IconBadge`, `AppIcon`, `BrandLogo`, `MonogramAvatar`, `RevealOnScroll`. |
+| `src/components/ui/` | Primitives: `BaseButton` (`primary` / `dark` / `outline` on light surfaces; `light` / `outline-light` on violet, maroon or ink), `AppLink` (routes internal paths; opens web addresses in a new tab and tells screen readers so), `SectionHeading`, `IconBadge`, `AppIcon`, `BrandLogo`, `MonogramAvatar`, `RevealOnScroll`. |
 | `src/composables/` | `useScrollReveal`, `useCountUp`, `usePageMeta`. |
 | `src/router/` | Routes, 404 handling, scroll behaviour and in-page anchor helpers. |
 | `api/enquiry.ts` | Vercel function behind the contact form. Sends each enquiry to the team on WhatsApp; see [WhatsApp enquiry form](#whatsapp-enquiry-form). |
@@ -82,6 +82,8 @@ To set it up:
 
    Please reply within 24 hours.
    ```
+
+   If you reword it, keep the template's own text under about 140 characters. WhatsApp refuses an alert longer than 1,024 characters once the details are filled in, and the visitor's details can take up to about 880 of them (the message box takes up to 700).
 
 3. **Set the variables** in `.env` for local testing (`.env.example` lists them) and in the Vercel project for the live site, e.g. `npx vercel env add WHATSAPP_TOKEN production`. Never prefix them with `VITE_`, or Vite would publish them in the site's JavaScript.
 

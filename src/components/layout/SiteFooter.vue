@@ -8,7 +8,6 @@ const { brand, footer, ui, year } = storeToRefs(useSiteStore())
 
 /** Splits before "@" so an email address wraps there, not mid-word, in a narrow column. */
 const wrapPoints = (label: string) => label.split(/(?=@)/)
-const isExternal = (href: string) => /^https?:\/\//.test(href)
 </script>
 
 <template>
@@ -38,7 +37,6 @@ const isExternal = (href: string) => /^https?:\/\//.test(href)
                   class="link-sweep text-sm text-white/75 transition-colors duration-300 [overflow-wrap:anywhere] hover:text-white pointer-coarse:block pointer-coarse:py-[0.6875rem]"
                 >
                   <template v-for="(part, i) in wrapPoints(link.label)" :key="i"><wbr v-if="i" />{{ part }}</template>
-                  <span v-if="isExternal(link.href)" class="sr-only"> {{ ui.newTab }}</span>
                 </AppLink>
               </li>
             </ul>

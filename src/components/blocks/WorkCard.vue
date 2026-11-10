@@ -10,7 +10,6 @@ const props = withDefaults(
     work: Work
     index: number
     visitLabel: string
-    newTabLabel: string
     /** Puts the screenshots on the right on large screens, so stacked stories alternate. */
     reverse?: boolean
   }>(),
@@ -108,7 +107,6 @@ const stage = computed(() => stages[props.index % stages.length])
           {{ visitLabel }}
           <!-- Long addresses can't fit a pill on the narrowest phones; screen readers still hear them. -->
           <span class="max-[25rem]:sr-only">{{ host }}</span>
-          <span class="sr-only">{{ newTabLabel }}</span>
           <AppIcon
             name="arrow-up-right"
             :size="16"

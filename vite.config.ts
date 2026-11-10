@@ -8,8 +8,10 @@ import { POST as enquiry } from './api/enquiry.ts'
 /** Runs api/enquiry.ts inside `pnpm dev` and `pnpm preview`, the way Vercel runs it in production. */
 const localApi = (): Plugin => {
   const handle = async (req: IncomingMessage, res: ServerResponse) => {
-    let body = ''
-    for await (const chunk of req) body += chunk
+    // Joined before decoding, so a character split across two chunks still arrives intact.
+    const chunks: Buffer[] = []
+    for await (const chunk of req) chunks.push(chunk as Buffer)
+    const body = Buffer.concat(chunks).toString()
     const headers = new Headers()
     for (const [key, value] of Object.entries(req.headers)) if (typeof value === 'string') headers.set(key, value)
     const response =

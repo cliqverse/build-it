@@ -205,15 +205,20 @@ export interface Testimonial {
   company: string
 }
 
+/** A direct way to reach the team, such as email or WhatsApp. */
+export interface ContactChannel {
+  icon: IconName
+  prompt: string
+  link: Link
+}
+
 export interface ClosingCta {
   eyebrow: string
   title: { lead: string; highlight: string }
   body: string
   primary: Link
   secondary: Link
-  emailPrompt: string
-  whatsappPrompt: string
-  whatsapp: Link
+  channels: ContactChannel[]
   footnote: string
 }
 

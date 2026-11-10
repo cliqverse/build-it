@@ -114,9 +114,10 @@ export const useSiteStore = defineStore('site', () => {
     body: `Share a few details about your project. We’ll come back within ${RESPONSE_TIME} with clear next steps, and everything you share stays confidential.`,
     primary: { label: 'Start your project', href: '/contact' },
     secondary: { label: 'See success stories', href: '/work' },
-    emailPrompt: 'Prefer email?',
-    whatsappPrompt: 'Prefer WhatsApp?',
-    whatsapp: { label: WHATSAPP_DISPLAY, href: WHATSAPP_URL },
+    channels: [
+      { icon: 'mail', prompt: 'Prefer email?', link: { label: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` } },
+      { icon: 'whatsapp', prompt: 'Prefer WhatsApp?', link: { label: WHATSAPP_DISPLAY, href: WHATSAPP_URL } },
+    ],
     footnote: `Response within ${RESPONSE_TIME} · Confidential by default · Over a decade of delivery`,
   })
 
